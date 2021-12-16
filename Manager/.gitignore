@@ -15,8 +15,6 @@ public/*.json
 McserverConfig.json
 core/*.json
 public/common/URL.js
-property.js
-
 tmp_upload/
 
 #vscode
