@@ -1,0 +1,24 @@
+{
+    "name": "MCGG",
+    "description": "A Web-based minecraft server",
+    "keywords": [
+        "games",
+        "minecraft"
+    ],
+    "logo": "https://raw.githubusercontent.com/Ren232/mcgg/master/logo.jpg",
+    "repository": "https://github.com/xhuanya/heroku-mcmanager",
+    "stack": "heroku-18",
+    "env": {
+
+    },
+    "buildpacks": [{
+            "url": "heroku/jvm"
+        },
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "https://github.com/xhuanya/heroku-mcmanager"
+        }
+    ]
+}
