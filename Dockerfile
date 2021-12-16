@@ -6,5 +6,4 @@ RUN apt update -y \
  	&& apt install -y vim screen wget curl \
 	&& chmod +x /configure.sh
 ENV LANG C.UTF-8
-WORKDIR /home
 CMD /configure.sh
