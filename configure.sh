@@ -36,16 +36,12 @@ echo " node: ${node_version}"
 echo " npm: ${npm_version}"
 echo "--------------- Node Version ---------------"
 
-cd /opt/MCSManager/
-npm install
-echo "complete."
+
+npm installvecho "complete."
 
 sleep 3
 
 echo "Start to install dependent libraries..."
-
-echo "--------------- Complete ---------------"
-echo " Successfully installed!!!"
-echo " Directory: /opt/MCSManager/"
-echo "--------------- Complete ---------------"
-screen  npm start
+cd /opt/Manager/
+npm install
+npm start

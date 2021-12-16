@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-ADD Manager /opt/MCSManager/
+ADD Manager /opt/Manager/
 ADD configure.sh /configure.sh
 RUN apt update -y \
 	&& apt upgrade -y \
