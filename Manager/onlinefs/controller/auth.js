@@ -28,6 +28,8 @@ router.all("/auth_master/pwd", (req, res) => {
         MCSERVER.log("[Online Fs]", "管理员", userName, "访问服务端存放目录");
         // const absServersDir = pathm.normalize(pathm.join(pathm.join(__dirname, "../../"), SERVERS_DIR));
         const absServersDir = pathm.normalize(pathm.join(__dirname, "../../"));
+        MCSERVER.log("[Online Fs]", "管理员", userName, "访问目录:" + absServersDir);
+
         req.session.fsos = new FileOperateStructure(absServersDir, "./");
         req.session.fsoperate = {};
         req.session.fsoperate.tmp = [];
