@@ -38,10 +38,12 @@
         term.writeln('This is a local terminal emulation, without a real terminal in the back-end.');
         term.writeln('Type some keys and commands to play around.');
         term.writeln('');
+        var pid = 0;
         WS.sendMsg("server/console/sshstart", JSON.stringify({}), function(obj) {
             console.log(obj)
             var remoteMCPingConfig = obj.ResponseValue;
             var data = JSON.parse(obj.body);
+            pid = data.pid;
             term.onData(function(res) {
                 WS.sendMsg("server/console/sshstart/message", JSON.stringify({
                     pid: data.pid,
@@ -58,7 +60,9 @@
 
 
         MI.rListener("onend", function() {
-            WS.sendMsg("server/console/remove", "");
+            WS.sendMsg("server/console/sshstart/close", JSON.stringify({
+                pid: pid
+            }));
             PAGE.mainC.innerHTML = "";
             PAGE.mainC.onscroll = function() {};
 
