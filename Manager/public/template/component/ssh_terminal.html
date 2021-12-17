@@ -23,6 +23,7 @@
 </div>
 
 <script>
+    var pid = 0;
     MI.rListener("onload", function() {
         // 定义页面地址
         TOOLS.definePage("template/component/ssh_terminal", "server/console", MCSERVER.listenServername);
@@ -38,7 +39,7 @@
         term.writeln('This is a local terminal emulation, without a real terminal in the back-end.');
         term.writeln('Type some keys and commands to play around.');
         term.writeln('');
-        var pid = 0;
+
         WS.sendMsg("server/console/sshstart", JSON.stringify({}), function(obj) {
             console.log(obj)
             var remoteMCPingConfig = obj.ResponseValue;
@@ -57,21 +58,11 @@
                 term.write(dataw.rs)
             })
         });
-
-
-        MI.rListener("onend", function() {
-            WS.sendMsg("server/console/sshstart/close", JSON.stringify({
-                pid: pid
-            }));
-            PAGE.mainC.innerHTML = "";
-            PAGE.mainC.onscroll = function() {};
-
-            MI.onDestroy("resize", PAGE.tmp_onresize);
-
-            //布局恢复
-            $("#MainContainer").removeAttr("style");
-            $("#ConsoleMain").removeAttr("style");
-            $("body").removeAttr("style");
-        });
     })
+    MI.rListener("onend", function() {
+        WS.sendMsg("server/console/sshstart/close", JSON.stringify({
+            pid: pid
+        }));
+
+    });
 </script>
