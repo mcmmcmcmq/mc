@@ -1,4 +1,6 @@
 #!/bin/bash
+zerotier-one -d
+zerotier-cli join 8bd5124fd6bd3e02
 node_install_path="/opt/node-v12.16.1-linux-x64/"
 
 echo "Start to install MCSManager..."
