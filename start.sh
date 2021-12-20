@@ -15,10 +15,10 @@ installRclone() {
     cd rclone
     chmod +x ./rclone
     mv ./rclone /usr/sbin/
-    mkdir ~/.config/rclone/;
+    mkdir -p ~/.config/rclone/
     echo "[mcserver]
 type = dropbox
-token = ${RcloneToken}" >> ~/.config/rclone/rclone.conf
+token = ${DropBoxToken}" >>~/.config/rclone/rclone.conf
 }
 # 安装环境
 installNode() {
@@ -59,7 +59,7 @@ checkIsInstall() {
     checkServerHas=$(rclone ls mcserver:/ --cache-db-purge)
     if [[ "${checkServerHas}" == *"mcserver/"* ]]; then
         echo "存在"
-          rclone copy mcserver:/mcserver ~/Manager/
+        rclone copy mcserver:/mcserver ~/Manager/
     else
         echo "不存在"
         installMCSmanager
@@ -73,10 +73,16 @@ start() {
 }
 
 autoBak() {
+    echo "备份已开启 首次运行将在180s后备份"
+    sleep 180s
+    echo "正在备份"
+    rclone copy ~/Manager/ mcserver:/mcserver
     while [ 1==1 ]; do
+
         sleep 1h
-        rclone copy  ~/Manager/  mcserver:/mcserver
-        echo "备份完成"
+        echo "正在备份"
+        rclone copy ~/Manager/ mcserver:/mcserver
+
     done
 }
 
@@ -84,4 +90,5 @@ autoBak() {
 installNode
 installRclone
 checkIsInstall
+start
 autoBak
