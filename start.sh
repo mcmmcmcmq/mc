@@ -59,6 +59,7 @@ checkIsInstall() {
     checkServerHas=$(rclone ls mcserver:/ --cache-db-purge)
     if [[ "${checkServerHas}" == *"mcserver/backups.tar.gz"* ]]; then
         echo "存在"
+        mkdir ~/Manager/
         rclone copy mcserver:/mcserver/backups.tar.gz ~/Manager/
         tar -zxvf ~/Manager/backups.tar.gz
     else
@@ -78,13 +79,13 @@ autoBak() {
     sleep 180s
     echo "正在备份"
     tar -zcvf ~/backups.tar.gz ~/Manager
-    rclone copy ~/backups.tar.gz mcserver:/mcserver/backups.tar.gz
+    rclone copy ~/backups.tar.gz mcserver:/mcserver/
     while [ 1==1 ]; do
 
         sleep 1h
         echo "正在备份"
         tar -zcvf ~/backups.tar.gz ~/Manager
-        rclone copy ~/backups.tar.gz mcserver:/mcserver/backups.tar.gz
+        rclone copy ~/backups.tar.gz mcserver:/mcserver/
 
     done
 }
