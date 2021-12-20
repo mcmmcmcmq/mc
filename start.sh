@@ -1,6 +1,6 @@
 #!/bin/bash
-# export http_proxy="127.0.0.1:871"
-# export https_proxy=$http_proxy
+export http_proxy="127.0.0.1:871"
+export https_proxy=$http_proxy
 # export socks5_proxy="socks5://127.0.0.1:870"
 echo "代理设置完毕"
 node_install_path="/opt/node-v12.16.1-linux-x64/"
@@ -57,9 +57,10 @@ installMCSmanager() {
 # 检查服务端是否存在
 checkIsInstall() {
     checkServerHas=$(rclone ls mcserver:/ --cache-db-purge)
-    if [[ "${checkServerHas}" == *"mcserver/"* ]]; then
+    if [[ "${checkServerHas}" == *"mcserver/backups.tar.gz"* ]]; then
         echo "存在"
-        rclone copy mcserver:/mcserver ~/Manager/
+        rclone copy mcserver:/mcserver/backups.tar.gz ~/Manager/
+        tar -zxvf ~/Manager/backups.tar.gz
     else
         echo "不存在"
         installMCSmanager
@@ -76,12 +77,14 @@ autoBak() {
     echo "备份已开启 首次运行将在180s后备份"
     sleep 180s
     echo "正在备份"
-    rclone copy ~/Manager/ mcserver:/mcserver
+    tar -zcvf ~/backups.tar.gz ~/Manager
+    rclone copy ~/backups.tar.gz mcserver:/mcserver/backups.tar.gz
     while [ 1==1 ]; do
 
         sleep 1h
         echo "正在备份"
-        rclone copy ~/Manager/ mcserver:/mcserver
+        tar -zcvf ~/backups.tar.gz ~/Manager
+        rclone copy ~/backups.tar.gz mcserver:/mcserver/backups.tar.gz
 
     done
 }
