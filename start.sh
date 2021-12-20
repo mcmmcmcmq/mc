@@ -15,7 +15,7 @@ installRclone() {
     cd rclone
     chmod +x ./rclone
     mv ./rclone /usr/sbin/
-
+    mkdir ~/.config/rclone/;
     echo "[mcserver]
 type = dropbox
 token = ${RcloneToken}" >> ~/.config/rclone/rclone.conf

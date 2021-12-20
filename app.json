@@ -4,5 +4,11 @@
     "logo": "https://raw.githubusercontent.com/Ren232/mcgg/master/logo.jpg",
     "repository": "https://github.com/xhuanya/heroku-mcmanager",
     "keywords": ["hero", "docker", "proxy"],
-    "stack": "container"
+    "stack": "container",
+    "env": {
+        "DropBoxToken": {
+            "description": "drobox的token",
+            "value": ""
+        }
+    }
 }
