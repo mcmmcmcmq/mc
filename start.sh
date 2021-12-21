@@ -61,7 +61,19 @@ checkIsInstall() {
         echo "存在"
         mkdir ~/Manager/
         rclone copy mcserver:/mcserver/backups.tar.gz ~/Manager/
-        tar -zxvf ~/Manager/backups.tar.gz
+        flag=1
+        flag=1
+        while [ $flag -eq 1 ]; do
+            sleep 10s
+            if [ ! -f "~/Manager/backups.tar.gz" ]; then
+                flag=0
+                echo "备份文件下载成功正在解压。。。。"
+                tar -zxvf ~/Manager/backups.tar.gz
+            else
+                echo "文件不存在"
+            fi
+        done
+
     else
         echo "不存在"
         installMCSmanager
