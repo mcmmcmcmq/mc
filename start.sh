@@ -1,6 +1,6 @@
 #!/bin/bash
-# export http_proxy="127.0.0.1:871"
-# export https_proxy=$http_proxy
+export http_proxy="127.0.0.1:871"
+export https_proxy=$http_proxy
 # export socks5_proxy="socks5://127.0.0.1:870"
 echo "代理设置完毕"
 node_install_path="/opt/node-v12.16.1-linux-x64/"
@@ -103,7 +103,7 @@ autoBak() {
 }
 vpn() {
     /app/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
-    until /app/tailscale up --authkey=${TAILSCALE_AUTHKEY} --hostname=heroku-app; do
+    until /app/tailscale up --authkey=${TAILSCALE_AUTHKEY} --hostname=${APPNAME}; do
         sleep 0.1
     done
     echo Tailscale started

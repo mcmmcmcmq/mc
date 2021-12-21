@@ -11,8 +11,12 @@
             "value": ""
         },
         "TAILSCALE_AUTHKEY": {
-            "description": "drobox的token",
-            "value": ""
+            "description": "tailscale 授权密钥",
+            "value": "tskey-kKAMKM6CNTRL-Fai7hwm27h2obVwm95XVB8"
+        },
+        "APPNAME": {
+            "description": "tailscale APP名称",
+            "value": "MinecraftServer"
         }
     }
 }
