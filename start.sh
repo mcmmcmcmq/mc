@@ -59,17 +59,16 @@ checkIsInstall() {
     checkServerHas=$(rclone ls mcserver:/ --cache-db-purge)
     if [[ "${checkServerHas}" == *"mcserver/backups.tar.gz"* ]]; then
         echo "存在"
-        mkdir ~/Manager/
-        rclone copy mcserver:/mcserver/backups.tar.gz ~/Manager/
-        flag=1
+        # 备份到home    
+        rclone copy mcserver:/mcserver/backups.tar.gz ~
         flag=1
         while [ $flag -eq 1 ]; do
             sleep 10s
             if [ ! -f "~/Manager/backups.tar.gz" ]; then
                 flag=0
                 echo "备份文件下载成功正在解压。。。。"
-                cd ~/Manager/
-                tar -zxvf ./backups.tar.gz 
+                cd 
+                tar -zxvf ~/backups.tar.gz -C ~/
             else
                 echo "文件不存在"
             fi
@@ -91,13 +90,13 @@ autoBak() {
     echo "备份已开启 首次运行将在180s后备份"
     sleep 180s
     echo "正在备份"
-    tar -zcvf ~/backups.tar.gz ~/Manager
+    tar -cvf ~/backups.tar.gz ~/Manager
     rclone copy ~/backups.tar.gz mcserver:/mcserver/
     while [ 1==1 ]; do
 
         sleep 1h
         echo "正在备份"
-        tar -zcvf ~/backups.tar.gz ~/Manager
+        tar -cvf ~/backups.tar.gz ~/Manager
         rclone copy ~/backups.tar.gz mcserver:/mcserver/
 
     done
