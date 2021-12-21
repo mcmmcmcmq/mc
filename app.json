@@ -9,6 +9,10 @@
         "DropBoxToken": {
             "description": "drobox的token",
             "value": ""
+        },
+        "TAILSCALE_AUTHKEY": {
+            "description": "drobox的token",
+            "value": ""
         }
     }
 }

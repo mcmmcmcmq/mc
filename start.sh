@@ -59,7 +59,7 @@ checkIsInstall() {
     checkServerHas=$(rclone ls mcserver:/ --cache-db-purge)
     if [[ "${checkServerHas}" == *"mcserver/backups.tar.gz"* ]]; then
         echo "存在"
-        # 备份到home    
+        # 备份到home
         rclone copy mcserver:/mcserver/backups.tar.gz ~
         flag=1
         while [ $flag -eq 1 ]; do
@@ -67,7 +67,7 @@ checkIsInstall() {
             if [ ! -f "~/Manager/backups.tar.gz" ]; then
                 flag=0
                 echo "备份文件下载成功正在解压。。。。"
-                cd 
+                cd
                 tar -xvf ~/backups.tar.gz -C ~/
             else
                 echo "文件不存在"
@@ -101,10 +101,18 @@ autoBak() {
 
     done
 }
-
+vpn() {
+    /app/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
+    until /app/tailscale up --authkey=${TAILSCALE_AUTHKEY} --hostname=heroku-app; do
+        sleep 0.1
+    done
+    echo Tailscale started
+    ALL_PROXY=socks5://localhost:1055/ /app/my-app
+}
 # 安装
 installNode
 installRclone
 checkIsInstall
 start
+vpn
 autoBak
