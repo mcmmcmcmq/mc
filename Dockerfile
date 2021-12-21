@@ -7,7 +7,6 @@ RUN wget https://pkgs.tailscale.com/stable/${TSFILE} && \
 
 FROM ubuntu:latest
 # Copy binary to production image
-COPY --from=builder /app/app /app/app
 COPY --from=tailscale /app/tailscaled /app/tailscaled
 COPY --from=tailscale /app/tailscale /app/tailscale
 
