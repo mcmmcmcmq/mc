@@ -68,7 +68,7 @@ checkIsInstall() {
                 flag=0
                 echo "备份文件下载成功正在解压。。。。"
                 cd 
-                tar -zxvf ~/backups.tar.gz -C ~/
+                tar -xvf ~/backups.tar.gz -C ~/
             else
                 echo "文件不存在"
             fi
