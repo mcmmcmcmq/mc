@@ -1,7 +1,3 @@
-FROM golang:1.16.2-alpine3.13 as builder
-WORKDIR /app
-COPY . ./
-RUN go build -o app ./main.go
 
 FROM alpine:latest as tailscale
 WORKDIR /app
