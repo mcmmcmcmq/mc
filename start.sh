@@ -68,7 +68,8 @@ checkIsInstall() {
             if [ ! -f "~/Manager/backups.tar.gz" ]; then
                 flag=0
                 echo "备份文件下载成功正在解压。。。。"
-                tar -zxvf ~/Manager/backups.tar.gz
+                cd ~/Manager/
+                tar -zxvf ./backups.tar.gz 
             else
                 echo "文件不存在"
             fi
