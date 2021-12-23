@@ -103,7 +103,7 @@ autoBak() {
 }
 vpn() {
     /app/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
-    until /app/tailscale up --authkey=${TAILSCALE_AUTHKEY} --hostname=${APPNAME}; do
+    until /app/tailscale up --authkey=${TAILSCALE_AUTHKEY} --hostname=${APPNAME} --advertise-tags=tag:mcserver; do
         sleep 0.1
     done
     echo Tailscale started
