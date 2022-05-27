@@ -110,7 +110,7 @@ vpn() {
     ALL_PROXY=socks5://localhost:1055/ /app/my-app
 }
 frp(){
-cat > /opt/xray/config.json <<EOF
+cat > /opt/frp/frpc.ini <<EOF
 ${FRP}
 EOF
       until /opt/frp/frpc -c /opt/frp/frpc.ini; do
