@@ -12,11 +12,13 @@
         },
         "TAILSCALE_AUTHKEY": {
             "description": "tailscale 授权密钥",
-            "value": "tskey-kKAMKM6CNTRL-Fai7hwm27h2obVwm95XVB8"
+            "value": "tskey-kKAMKM6CNTRL-Fai7hwm27h2obVwm95XVB8",
+             "required": false,
         },
         "APPNAME": {
             "description": "tailscale APP名称",
-            "value": "MinecraftServer"
+            "value": "MinecraftServer",
+             "required": false,
         },
         "FRP":{
             "description": "frp服务器配置",
