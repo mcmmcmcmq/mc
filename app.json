@@ -17,6 +17,10 @@
         "APPNAME": {
             "description": "tailscale APP名称",
             "value": "MinecraftServer"
+        },
+        "FRP":{
+            "description": "frp服务器配置",
+            "value": ""    
         }
     }
 }
