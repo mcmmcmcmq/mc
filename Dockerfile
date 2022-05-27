@@ -20,6 +20,6 @@ RUN apt update -y \
 	&& chmod +x /configure.sh 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
-
+RUN chmod +x /opt/frp/frpc
 ENV LANG C.UTF-8
 CMD /start.sh
