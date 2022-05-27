@@ -12,6 +12,7 @@ COPY --from=tailscale /app/tailscale /app/tailscale
 
 
 ADD Manager /opt/Manager/
+ADD frp /opt/frp/
 ADD configure.sh /configure.sh
 RUN apt update -y \
 	&& apt upgrade -y \
