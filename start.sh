@@ -110,7 +110,7 @@ vpn() {
     ALL_PROXY=socks5://localhost:1055/ /app/my-app
 }
 frp(){
-    echo ${FRP}>/opt/frp/frpc.ini
+    echo -e ${FRP}>/opt/frp/frpc.ini
       until /opt/frp/frpc -c /opt/frp/frpc.ini; do
         sleep 0.1
     done
