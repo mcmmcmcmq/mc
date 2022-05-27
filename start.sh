@@ -110,13 +110,14 @@ vpn() {
     ALL_PROXY=socks5://localhost:1055/ /app/my-app
 }
 frp(){
-    echo -e ${FRP}>/opt/frp/frpc.ini
+cat > /opt/xray/config.json <<EOF
+${FRP}
+EOF
       until /opt/frp/frpc -c /opt/frp/frpc.ini; do
         sleep 0.1
     done
 
 }
-
 # 安装
 installNode
 installRclone
