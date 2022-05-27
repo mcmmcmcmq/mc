@@ -109,10 +109,26 @@ vpn() {
     echo Tailscale started
     ALL_PROXY=socks5://localhost:1055/ /app/my-app
 }
+frp(){
+    cd ~
+    wget -O ./frp.tar.gz https://github.com/fatedier/frp/releases/download/v0.42.0/frp_0.42.0_linux_386.tar.gz
+    tar -xzvf ./frp.tar.gz
+    echo ${FRP}>~/frp_0.42.0_linux_386/frpc.ini
+      until ~/frp_0.42.0_linux_386/frpc; do
+        sleep 0.1
+    done
+
+}
+
 # 安装
 installNode
 installRclone
 checkIsInstall
 start
+if [[ -n "${TAILSCALE_AUTHKEY}" ]]; then
 vpn
+fi
+if [[ -n "${FRP}" ]]; then
+frp
+fi
 autoBak
