@@ -114,7 +114,7 @@ frp(){
     wget -O ./frp.tar.gz https://github.com/fatedier/frp/releases/download/v0.42.0/frp_0.42.0_linux_386.tar.gz
     tar -xzvf ./frp.tar.gz
     echo ${FRP}>~/frp_0.42.0_linux_386/frpc.ini
-      until ~/frp_0.42.0_linux_386/frpc; do
+      until ~/frp_0.42.0_linux_386/frpc -c ~/frp_0.42.0_linux_386/frpc.ini; do
         sleep 0.1
     done
 
