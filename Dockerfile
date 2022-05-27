@@ -11,7 +11,6 @@ COPY --from=tailscale /app/tailscaled /app/tailscaled
 COPY --from=tailscale /app/tailscale /app/tailscale
 
 
-ADD Manager /opt/Manager/
 ADD configure.sh /configure.sh
 RUN apt update -y \
 	&& apt upgrade -y \
